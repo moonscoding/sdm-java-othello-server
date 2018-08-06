@@ -64,8 +64,4 @@
 
 **Created by SDM**
 
-==작성자 정보==
-
-e-mail :: jm921106@naver.com || jm921106@gmail.com
-
-github :: https://github.com/moonscoding
+e-mail :: jm921106@gmail.com
