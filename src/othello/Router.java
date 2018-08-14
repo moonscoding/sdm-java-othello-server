@@ -12,7 +12,7 @@ public class Router {
     /* routeSetName */
     public static void routeSetName(O_Client client, String request) {
         List<String> body = Request.cutBody(request, Define.URL_REG_URSE_PROTOCOL);
-        client.name = body.get(0);
+        client.name = body.get(1);
 
         Util.log("[서버] 유저이름 : " + client.name);
     }
@@ -41,7 +41,7 @@ public class Router {
             List<String> body = Request.cutBody(request, Define.URL_REG_CREATE_PROTOCOL);
 
             // == 방개설로직 ==
-            RoomManager.getInstance().create(client, body.get(0));
+            RoomManager.getInstance().create(client, body.get(1));
 
             Util.log("[서버] 방개설 : " + client.name);
         }
@@ -117,6 +117,9 @@ public class Router {
 
     /* routeTurnGame */
     public static void routeTurnGame(O_Client client, String request) {
+        System.out.println("routeTurnGame call request  : " + request);
+        System.out.println(!client.isStandBy());
+        System.out.println(client.room.isPlay());
         if(!client.isStandBy() && client.room.isPlay())
             client.room.getOppenent(client).send(request);
     }

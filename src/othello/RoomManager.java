@@ -2,6 +2,7 @@ package othello;
 
 import common.Define;
 import model.Room;
+import util.Response;
 
 import java.util.List;
 import java.util.UUID;
@@ -46,15 +47,13 @@ public class RoomManager {
         if (rooms.size() > 0) {
             for (Room room : rooms) {
                 sb.append(
-                        "\"" +
-                                room.getId() + "_" +
-                                room.getTitle() + "_" +
-                                room.getWins() + "_" +
-                                room.getGuardian().name + "_" +
-                                (room.getChallenger() == null ? 1 : 2) + "\","
+                    Response.fullBlank(room.getId(), Define.SIZE_ROOM_ID) +
+                    Response.fullBlank(room.getTitle(), Define.SIZE_ROOM_TITLE) +
+                    Response.fullBlank(room.getWins() + "", Define.SIZE_ROOM_WINS) +
+                    Response.fullBlank(room.getGuardian().name, Define.SIZE_USER_NAME) +
+                    (room.getChallenger() == null ? 1 : 2)
                 );
             }
-            sb.deleteCharAt(sb.length() - 1);
         }
         return sb.toString();
     }
@@ -92,7 +91,7 @@ public class RoomManager {
         for (int i = 0; i < O_Server.getInstance().clients.size(); i++) {
             O_Client client = (O_Client) O_Server.getInstance().clients.get(i);
             if(client.isStandBy()) {
-                client.send(Define.URL_RES_UPDATE);
+                client.send(Define.URL_RES_UPDATE + this.toString());
             }
         }
     }

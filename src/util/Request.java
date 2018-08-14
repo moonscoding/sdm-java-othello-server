@@ -20,9 +20,10 @@ public class Request {
     /* cutBody */
     public static List<String> cutBody(String request, int[] cutPoint)  {
         try {
+            // @Test
             System.out.println("[서버] 전송데이터 : " + request);
             System.out.println();
-            System.out.println();
+
             List<String> body = new LinkedList<>();
             int pointer = 0;
             for (int i = 0; i < cutPoint.length; i++) {

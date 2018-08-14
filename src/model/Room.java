@@ -5,6 +5,8 @@ import othello.O_Client;
 import othello.RoomManager;
 import util.Response;
 
+import java.util.UUID;
+
 public class Room {
 
     /* Field */
@@ -17,9 +19,9 @@ public class Room {
 
     /* Constructor */
     public Room(O_Client guardian, String title) {
+        this.id = RoomManager.getUniqueId(UUID.randomUUID().toString()); // == Random ==
         // @Test
-        // this.id = UUID.randomUUID().toString(); // == Random ==
-        this.id = RoomManager.getUniqueId("fix"); // == Random ==
+        //this.id = RoomManager.getUniqueId("fix"); // == Random ==
         this.title = title;
         this.wins = 0;
         this.guardian = guardian;
